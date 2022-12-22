@@ -14,5 +14,7 @@ public class GetBirthday {
         this.date = date;
     }
 
-    public GetBirthday() {}
+    public GetBirthday(
+           //blank override
+    ) {}
 }
