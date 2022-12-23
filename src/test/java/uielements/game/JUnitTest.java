@@ -1,10 +1,12 @@
 package uielements.game;
 import io.cucumber.java.bs.A;
+import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Array;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class JUnitTest {
         Assertions.assertEquals("Lastnametest",actor1.getLast_name(), "Last name error");
         actor1.setBirthday(Date.valueOf("1900-01-01"));
         Assertions.assertEquals(Date.valueOf("1900-01-01"),actor1.getBirthday(),"Birthday setter/getter error");
+        long millis=System.currentTimeMillis();
+        java.sql.Date date=new java.sql.Date(millis);
+        Actor actor2 = new Actor("test2","test1", date);
         Film film1=new Film();
         Film film2 = new Film();
         List<Film> films = new ArrayList<>();
@@ -30,6 +35,9 @@ public class JUnitTest {
         films.add(film2);
         actor1.setFilms(films);
         Assertions.assertEquals(films, actor1.getFilms(),"Films list error");
+        Assertions.assertEquals("test1",actor2.getFirst_name(),"Actor firstname ");
+        Assertions.assertEquals("test2",actor2.getLast_name(),"Actor lastname");
+        Assertions.assertEquals(date,actor2.getBirthday(),"Birthday error");
     }
     @Test
     public void filmGetter(){
