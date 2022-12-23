@@ -1,4 +1,5 @@
 package uielements.game;
+import io.cucumber.java.bs.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -46,5 +47,48 @@ public class JUnitTest {
         actors.add(actor2);
         film.setActors(actors);
         Assertions.assertEquals(actors,film.getActors(),"Birthday setter/getter error");
+    }
+    @Test
+    public void getBirthdayTester(){
+        GetBirthday getBirthday = new GetBirthday();
+        Date date = Date.valueOf("1900-01-01");
+        getBirthday.setDate(date);
+        Assertions.assertEquals(date,getBirthday.getDate(),"Get birthday error");
+    }
+    @Test
+    public void testFilmsFromActor(){
+        FilmsFromActors films = new FilmsFromActors();
+        films.setFirst_name("1");
+        films.setLast_name("2");
+        films.setTitle("3");
+        Assertions.assertEquals("1",films.getFirst_name(),"First name error");
+        Assertions.assertEquals("2",films.getLast_name(),"Last name error");
+        Assertions.assertEquals("3",films.getTitle(),"Title error");
+    }
+    @Test
+    public void sendActorTest(){
+        SendActors sends = new SendActors();
+        Actor actor1 = new Actor();
+        Actor actor2= new Actor();
+        sends.addActor(actor1);
+        sends.addActor(actor2);
+        List<Actor> actors = new ArrayList<>();
+        actors.add(actor1);
+        actors.add(actor2);
+        Assertions.assertEquals(actors,sends.getActorList(),"Send actors getter/adder error");
+        sends.setActorList(actors);
+        Assertions.assertEquals(actors,sends.getActorList(),"Send actors setter error");
+    }
+    @Test
+    public void filmConstructor(){
+        Actor actor = new Actor();
+        Actor actor1 = new Actor();
+        List<Actor> actors = new ArrayList<>();
+        actors.add(actor);
+        actors.add(actor1);
+        Film film = new Film("test1","test2",actors);
+        Assertions.assertEquals("test1",film.getTitle(),"Title error");
+        Assertions.assertEquals("test2",film.getRating(),"ratingerror");
+        Assertions.assertEquals(actors,film.getActors(),"constructor actor list error");
     }
 }
