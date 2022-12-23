@@ -99,4 +99,16 @@ public class JUnitTest {
         Assertions.assertEquals("test2",film.getRating(),"ratingerror");
         Assertions.assertEquals(actors,film.getActors(),"constructor actor list error");
     }
+    @Test
+    public void filmsfromActorTest2(){
+        Film film = new Film();
+        film.setTitle("Test");
+        Actor actor = new Actor();
+        actor.setLast_name("testend");
+        actor.setFirst_name("testbeg");
+        FilmsFromActors films = new FilmsFromActors(film,actor);
+        Assertions.assertEquals(actor.getFirst_name(),films.getFirst_name(),"First name error");
+        Assertions.assertEquals(actor.getLast_name(),films.getLast_name(),"Last name error");
+        Assertions.assertEquals(film.getTitle(),films.getTitle(),"film name error");
+    }
 }
