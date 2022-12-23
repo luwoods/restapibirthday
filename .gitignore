@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 /src/main/resources/
+/src/main/java/uielements/game/AppConfig.java
+/src/main/java/uielements/game/AwsSecrets.java
 ### STS ###
 .apt_generated
 .classpath
