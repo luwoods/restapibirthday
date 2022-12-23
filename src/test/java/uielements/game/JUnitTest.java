@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Array;
 import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,4 +113,29 @@ public class JUnitTest {
         Assertions.assertEquals(actor.getLast_name(),films.getLast_name(),"Last name error");
         Assertions.assertEquals(film.getTitle(),films.getTitle(),"film name error");
     }
+    @Test public void bdCheckEqual(){
+        FilmRepository fr = null;
+        ActorRepository ar = null;
+        GameApplication gameApplication = new GameApplication(ar,fr);
+        LocalDate localDate = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
+        LocalDate localDate1 = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
+        Assertions.assertTrue(gameApplication.CheckBirthdayIsEqual(localDate,localDate1),"BirthdayError");
+        Date date = new Date(19990101);
+        LocalDate localDate2 = Instant.ofEpochMilli(date.getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+
+
+        Assertions.assertEquals(localDate2,gameApplication.ConvertToLocalDate(date),"Date time conversion error");
+    }
+    /*@Test
+    public void gameapplicationcehck(){
+        ActorRepository ar;
+        FilmRepository fr;
+        Actor actor = new Actor("test","test",new Date(19990101));
+        actor.setActorid(1);
+        ar.save(actor);
+        GameApplication gameApplication = new GameApplication(ar,fr);
+        Assertions.assertEquals(actor,gameApplication.getOneActor(1),"asd");
+    }*/
 }
